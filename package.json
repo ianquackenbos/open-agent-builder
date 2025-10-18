@@ -1,5 +1,6 @@
 {
-  "name": "firecrawl-style-guide",
+  "name": "openbuilder",
+  "description": "Build, test, and deploy AI agent workflows with a visual no-code interface.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
