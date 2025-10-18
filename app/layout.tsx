@@ -34,6 +34,10 @@ export default function RootLayout({
           <head>
             <title>OpenBuilder</title>
             <meta name="description" content="Build, test, and deploy AI agent workflows with a visual no-code interface." />
+            <meta property="og:title" content="OpenBuilder" />
+            <meta property="og:description" content="Build, test, and deploy AI agent workflows with a visual no-code interface." />
+            <meta name="twitter:title" content="OpenBuilder" />
+            <meta name="twitter:description" content="Build, test, and deploy AI agent workflows with a visual no-code interface." />
             <link rel="icon" href="/favicon.png" />
             <ColorStyles />
           </head>
