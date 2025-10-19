@@ -608,7 +608,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
     const getTextColor = () => {
       if (nodeType === 'note') return 'text-white'; // White text for note nodes (yellow background)
       if (nodeType === 'if-else' || nodeType === 'while' || nodeType === 'user-approval') {
-        return 'text-[#18181b]'; // Dark text for orange background nodes
+        return 'text-[#18181b]'; // Dark text for brand green background nodes
       }
       return 'text-[#18181b]'; // Default dark text
     };
@@ -631,7 +631,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
     const colorMap: Record<string, string> = {
       'agent': 'bg-blue-500',
       'mcp': 'bg-[#FFEFA4] dark:bg-[#FFDD40]',
-      'firecrawl': 'bg-heat-100',
+      'firecrawl': 'bg-brand-600',
       'if-else': 'bg-[#FEE7C2] dark:bg-[#FFAE2B]',
       'while': 'bg-[#FEE7C2] dark:bg-[#FFAE2B]',
       'user-approval': 'bg-[#E5E7EB] dark:bg-[#9CA3AF]',
@@ -811,7 +811,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
 
         const nextClassName = isActive ? 'active-edge' : isSelected ? 'selected-edge' : '';
         const currentClassName = edge.className || '';
-        const nextStroke = isActive ? '#FA5D19' : isSelected ? '#FA5D19' : '#d1d5db';
+        const nextStroke = isActive ? '#0B5FFF' : isSelected ? '#0B5FFF' : '#d1d5db';
         const nextWidth = isActive ? 2 : isSelected ? 2 : 1;
 
         const classChanged = currentClassName !== nextClassName;
@@ -1371,7 +1371,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
             <button
               type="button"
               onClick={() => setEnvironment('draft')}
-              className={`px-12 py-6 text-label-small transition-colors ${environment === 'draft' ? 'bg-heat-100 text-white shadow-sm' : 'text-black-alpha-48 hover:text-accent-black'}`}
+              className={`px-12 py-6 text-label-small transition-colors ${environment === 'draft' ? 'bg-brand-600 text-white shadow-sm' : 'text-black-alpha-48 hover:text-accent-black'}`}
             >
               Draft
             </button>
@@ -1394,7 +1394,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
                 }
                 setEnvironment('production');
               }}
-              className={`px-12 py-6 text-label-small transition-colors ${environment === 'production' ? 'bg-heat-100 text-white shadow-sm' : 'text-black-alpha-48 hover:text-accent-black'}`}
+              className={`px-12 py-6 text-label-small transition-colors ${environment === 'production' ? 'bg-brand-600 text-white shadow-sm' : 'text-black-alpha-48 hover:text-accent-black'}`}
             >
               Production
             </button>
@@ -1527,7 +1527,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
             onClick={handlePreview}
             className={`px-16 py-8 border rounded-8 text-body-medium transition-colors flex items-center gap-8 ${
               showExecution
-                ? 'bg-heat-100 text-white border-heat-100'
+                ? 'bg-brand-600 text-white border-brand-600'
                 : 'bg-accent-white text-accent-black border-border-faint hover:bg-black-alpha-4'
             }`}
           >
@@ -1551,7 +1551,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
 
         <button
           onClick={handleSaveWorkflow}
-          className="px-20 py-8 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98] flex items-center gap-8"
+          className="px-20 py-8 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98] flex items-center gap-8"
         >
           <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
@@ -1653,7 +1653,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
           />
           <MiniMap
             className="!bg-accent-white !border-border-faint"
-            nodeColor="#FA5D19"
+            nodeColor="#0B5FFF"
           />
         </ReactFlow>
 
@@ -1863,7 +1863,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
 
               <button
                 onClick={() => setShowComingSoonModal(false)}
-                className="w-full px-20 py-12 bg-heat-100 hover:bg-heat-200 text-white rounded-10 text-sm font-medium transition-colors"
+                className="w-full px-20 py-12 bg-brand-600 hover:bg-brand-700 text-white rounded-10 text-sm font-medium transition-colors"
               >
                 Got it
               </button>
@@ -1900,7 +1900,7 @@ function WorkflowBuilderInner({ onBack, initialWorkflowId, initialTemplateId }: 
           className="fixed bottom-80 left-1/2 -translate-x-1/2 z-50 flex items-center gap-8 px-16 py-12 bg-accent-white border border-border-faint rounded-12 shadow-2xl"
         >
           <div className="flex items-center gap-8 pr-12 border-r border-border-faint">
-            <svg className="w-16 h-16 text-heat-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             <span className="text-body-small text-accent-black font-medium">Connection Selected</span>

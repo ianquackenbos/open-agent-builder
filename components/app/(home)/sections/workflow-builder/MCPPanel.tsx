@@ -7,7 +7,7 @@ import type { Node } from "@xyflow/react";
 import { toast } from "sonner";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
+import { useSessionUser } from "@/app/providers/AuthProvider";
 
 interface MCPPanelProps {
   node: Node | null;
@@ -26,7 +26,7 @@ export default function MCPPanel({
   onAddToAgent,
   onOpenSettings
 }: MCPPanelProps) {
-  const { user } = useUser();
+  const user = useSessionUser();
   const nodeData = node?.data as any;
 
   // Fetch enabled MCP servers from central registry
@@ -119,7 +119,7 @@ export default function MCPPanel({
                       onClose();
                       onOpenSettings?.();
                     }}
-                    className="px-16 py-8 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-xs font-medium transition-all"
+                    className="px-16 py-8 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-xs font-medium transition-all"
                   >
                     Go to Settings
                   </button>
@@ -146,7 +146,7 @@ export default function MCPPanel({
                         }
                       }
                     }}
-                    className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors appearance-none cursor-pointer"
+                    className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors appearance-none cursor-pointer"
                   >
                     <option value="">Select an MCP server...</option>
                     {mcpServers.map((server) => {
@@ -164,7 +164,7 @@ export default function MCPPanel({
                       {/* Server Info Card */}
                       <div className="p-16 bg-background-base rounded-12 border border-border-faint">
                         <div className="flex items-start gap-12">
-                          <div className={`text-heat-100`}>
+                          <div className={`text-brand-600`}>
                             {getCategoryIcon(selectedServer.category)}
                           </div>
                           <div className="flex-1">
@@ -173,7 +173,7 @@ export default function MCPPanel({
                                 {selectedServer.name}
                               </h4>
                               {selectedServer.name === 'Firecrawl' && selectedServer.isOfficial && (
-                                <span className="px-6 py-2 bg-heat-4 text-heat-100 rounded-6 text-xs border border-heat-100 font-medium">
+                                <span className="px-6 py-2 bg-brand-50 text-brand-600 rounded-6 text-xs border border-brand-200 font-medium">
                                   API Key Required
                                 </span>
                               )}
@@ -188,7 +188,7 @@ export default function MCPPanel({
                                 href="https://www.firecrawl.dev/app/api-keys"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xs text-heat-100 hover:text-heat-200 underline block mb-8"
+                                className="text-xs text-brand-600 hover:text-brand-700 underline block mb-8"
                               >
                                 Get API key here →
                               </a>
@@ -198,7 +198,7 @@ export default function MCPPanel({
                                 Category: {selectedServer.category}
                               </span>
                               {selectedServer.connectionStatus === 'connected' && (
-                                <span className="px-6 py-2 bg-heat-4 text-heat-100 rounded-6 border border-heat-100">
+                                <span className="px-6 py-2 bg-brand-50 text-brand-600 rounded-6 border border-brand-200">
                                   Connected
                                 </span>
                               )}
@@ -211,7 +211,7 @@ export default function MCPPanel({
                           <div className="mt-12">
                             <button
                               onClick={() => setShowDetails(!showDetails)}
-                              className="flex items-center gap-8 text-xs text-heat-100 hover:text-heat-200 font-medium"
+                              className="flex items-center gap-8 text-xs text-brand-600 hover:text-brand-700 font-medium"
                             >
                               <ChevronDown className={`w-14 h-14 transition-transform ${showDetails ? 'rotate-180' : ''}`} />
                               {showDetails ? 'Hide' : 'Show'} Available Tools ({selectedServer.tools.length})
@@ -229,7 +229,7 @@ export default function MCPPanel({
                                   <div className="space-y-6">
                                     {selectedServer.tools.map((tool: string) => (
                                       <div key={tool} className="p-8 bg-accent-white rounded-6 border border-border-faint">
-                                        <code className="text-xs font-mono text-heat-100">
+                                        <code className="text-xs font-mono text-brand-600">
                                           {tool}
                                         </code>
                                       </div>
@@ -257,7 +257,7 @@ export default function MCPPanel({
                   onClose();
                   onOpenSettings?.();
                 }}
-                className="text-xs text-heat-100 hover:text-heat-200 font-medium"
+                className="text-xs text-brand-600 hover:text-brand-700 font-medium"
               >
                 Go to Settings → MCP Registry
               </button>

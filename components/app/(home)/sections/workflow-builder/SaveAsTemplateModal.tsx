@@ -6,7 +6,7 @@ import { X, Save, Tag, FolderOpen, Clock, BarChart3, Globe, Lock, Info } from "l
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
+import { useSessionUser } from "@/app/providers/AuthProvider";
 
 interface SaveAsTemplateModalProps {
   isOpen: boolean;
@@ -29,7 +29,7 @@ const categories = [
 const difficultyLevels = [
   { value: "beginner", label: "Beginner", color: "text-green-600" },
   { value: "intermediate", label: "Intermediate", color: "text-yellow-600" },
-  { value: "advanced", label: "Advanced", color: "text-orange-600" },
+  { value: "advanced", label: "Advanced", color: "text-brand-600" },
   { value: "expert", label: "Expert", color: "text-red-600" },
 ];
 
@@ -39,7 +39,7 @@ export default function SaveAsTemplateModal({
   workflowId,
   workflowName,
 }: SaveAsTemplateModalProps) {
-  const { user } = useUser();
+  const user = useSessionUser();
   const saveAsTemplate = useMutation(api.templates.saveAsTemplate);
 
   const [formData, setFormData] = useState({
@@ -137,7 +137,7 @@ export default function SaveAsTemplateModal({
           <div className="p-24 border-b border-border-faint">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-12">
-                <div className="w-40 h-40 rounded-10 bg-heat-100 flex items-center justify-center">
+                <div className="w-40 h-40 rounded-10 bg-brand-600 flex items-center justify-center">
                   <Save className="w-20 h-20 text-white" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export default function SaveAsTemplateModal({
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Enter template name"
-                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-heat-100"
+                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-brand-600"
               />
             </div>
 
@@ -182,7 +182,7 @@ export default function SaveAsTemplateModal({
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Describe what this template does and when to use it"
                 rows={3}
-                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-heat-100 resize-none"
+                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-brand-600 resize-none"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default function SaveAsTemplateModal({
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black focus:outline-none focus:ring-2 focus:ring-heat-100"
+                className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black focus:outline-none focus:ring-2 focus:ring-brand-600"
               >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -223,7 +223,7 @@ export default function SaveAsTemplateModal({
                     }
                   }}
                   placeholder="Add tags (press Enter)"
-                  className="flex-1 px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-heat-100"
+                  className="flex-1 px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-brand-600"
                 />
                 <button
                   onClick={handleAddTag}
@@ -237,12 +237,12 @@ export default function SaveAsTemplateModal({
                   {formData.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-10 py-4 bg-heat-4 text-heat-100 rounded-6 text-body-small flex items-center gap-4"
+                      className="px-10 py-4 bg-brand-50 text-brand-600 rounded-6 text-body-small flex items-center gap-4"
                     >
                       {tag}
                       <button
                         onClick={() => handleRemoveTag(tag)}
-                        className="hover:text-heat-200"
+                        className="hover:text-brand-700"
                       >
                         <X className="w-12 h-12" />
                       </button>
@@ -262,7 +262,7 @@ export default function SaveAsTemplateModal({
                 <select
                   value={formData.difficulty}
                   onChange={(e) => setFormData({ ...formData, difficulty: e.target.value })}
-                  className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black focus:outline-none focus:ring-2 focus:ring-heat-100"
+                  className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black focus:outline-none focus:ring-2 focus:ring-brand-600"
                 >
                   {difficultyLevels.map((level) => (
                     <option key={level.value} value={level.value}>
@@ -282,7 +282,7 @@ export default function SaveAsTemplateModal({
                   value={formData.estimatedTime}
                   onChange={(e) => setFormData({ ...formData, estimatedTime: e.target.value })}
                   placeholder="e.g., 5-10 minutes"
-                  className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-heat-100"
+                  className="w-full px-12 py-10 bg-background-base border border-border-faint rounded-8 text-body-medium text-accent-black placeholder:text-black-alpha-32 focus:outline-none focus:ring-2 focus:ring-brand-600"
                 />
               </div>
             </div>
@@ -295,12 +295,12 @@ export default function SaveAsTemplateModal({
                   id="isPublic"
                   checked={formData.isPublic}
                   onChange={(e) => setFormData({ ...formData, isPublic: e.target.checked })}
-                  className="mt-4 w-16 h-16 rounded-4 border-border-faint text-heat-100 focus:ring-heat-100"
+                  className="mt-4 w-16 h-16 rounded-4 border-border-faint text-brand-600 focus:ring-brand-600"
                 />
                 <label htmlFor="isPublic" className="flex-1 cursor-pointer">
                   <div className="flex items-center gap-8 mb-4">
                     {formData.isPublic ? (
-                      <Globe className="w-16 h-16 text-heat-100" />
+                      <Globe className="w-16 h-16 text-brand-600" />
                     ) : (
                       <Lock className="w-16 h-16 text-black-alpha-48" />
                     )}
@@ -318,9 +318,9 @@ export default function SaveAsTemplateModal({
             </div>
 
             {/* Info Box */}
-            <div className="p-16 bg-heat-4 border border-heat-100 rounded-8">
+            <div className="p-16 bg-brand-50 border border-brand-200 rounded-8">
               <div className="flex items-start gap-12">
-                <Info className="w-16 h-16 text-heat-100 flex-shrink-0 mt-2" />
+                <Info className="w-16 h-16 text-brand-600 flex-shrink-0 mt-2" />
                 <div>
                   <p className="text-body-small text-accent-black">
                     Templates allow you to save and reuse workflow configurations. You can create
@@ -342,7 +342,7 @@ export default function SaveAsTemplateModal({
             <button
               onClick={handleSave}
               disabled={isSaving || !formData.name.trim()}
-              className="px-20 py-10 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-8"
+              className="px-20 py-10 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-8"
             >
               {isSaving ? (
                 <>

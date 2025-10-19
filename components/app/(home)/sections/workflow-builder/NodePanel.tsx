@@ -7,7 +7,7 @@ import VariableReferencePicker from "./VariableReferencePicker";
 import { toast } from "sonner";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
+import { useSessionUser } from "@/app/providers/AuthProvider";
 import { Id } from "@/convex/_generated/dataModel";
 import FirecrawlLogo from "@/components/icons/FirecrawlLogo";
 
@@ -34,7 +34,7 @@ export default function NodePanel({
   onUpdate,
   onOpenSettings,
 }: NodePanelProps) {
-  const { user } = useUser();
+  const user = useSessionUser();
 
   // MCP states - now store only server IDs, not full configs
   const [showMCPSelector, setShowMCPSelector] = useState(false);
@@ -459,10 +459,10 @@ export default function NodePanel({
                 onChange={(e) => setInstructions(e.target.value)}
                 placeholder="Enter agent instructions..."
                 rows={8}
-                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black placeholder-black-alpha-32 focus:outline-none focus:border-heat-100 transition-colors resize-y"
+                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black placeholder-black-alpha-32 focus:outline-none focus:border-brand-600 transition-colors resize-y"
               />
               <p className="text-xs text-black-alpha-48 mt-6">
-                Use <code className="px-4 py-1 bg-background-base rounded text-heat-100 font-mono text-xs">{`{{variable}}`}</code> syntax to reference data
+                Use <code className="px-4 py-1 bg-background-base rounded text-brand-600 font-mono text-xs">{`{{variable}}`}</code> syntax to reference data
               </p>
             </div>
 
@@ -474,7 +474,7 @@ export default function NodePanel({
               <button
                 onClick={() => setIncludeChatHistory(!includeChatHistory)}
                 className={`w-48 h-28 rounded-full transition-colors relative ${
-                  includeChatHistory ? "bg-heat-100" : "bg-black-alpha-12"
+                  includeChatHistory ? "bg-brand-600" : "bg-black-alpha-12"
                 }`}
               >
                 <motion.div
@@ -492,7 +492,7 @@ export default function NodePanel({
               </label>
               <button
                 onClick={() => setShowModelsDropdown(!showModelsDropdown)}
-                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors flex items-center justify-between hover:bg-black-alpha-4"
+                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors flex items-center justify-between hover:bg-black-alpha-4"
               >
                 <span className="truncate">
                   {model ? (
@@ -522,7 +522,7 @@ export default function NodePanel({
                           setShowModelsDropdown(false);
                           onOpenSettings?.();
                         }}
-                        className="px-12 py-6 bg-heat-100 text-white rounded-8 text-sm hover:bg-heat-120 transition-colors"
+                        className="px-12 py-6 bg-brand-600 text-white rounded-8 text-sm hover:bg-brand-700 transition-colors"
                       >
                         Add API Keys
                       </button>
@@ -543,7 +543,7 @@ export default function NodePanel({
                               }}
                               className={`w-full text-left px-8 py-6 rounded-6 text-sm transition-colors ${
                                 model === modelOption.id
-                                  ? 'bg-heat-100 text-white'
+                                  ? 'bg-brand-600 text-white'
                                   : 'hover:bg-black-alpha-4 text-accent-black'
                               }`}
                             >
@@ -560,7 +560,7 @@ export default function NodePanel({
                           }}
                           className={`w-full text-left px-8 py-6 rounded-6 text-sm transition-colors ${
                             model === "custom"
-                              ? 'bg-heat-100 text-white'
+                              ? 'bg-brand-600 text-white'
                               : 'hover:bg-black-alpha-4 text-accent-black'
                           }`}
                         >
@@ -581,7 +581,7 @@ export default function NodePanel({
                     setModel(e.target.value);
                   }}
                   placeholder="provider/model-name"
-                  className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black placeholder-black-alpha-32 font-mono focus:outline-none focus:border-heat-100 transition-colors mt-8"
+                  className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black placeholder-black-alpha-32 font-mono focus:outline-none focus:border-brand-600 transition-colors mt-8"
                 />
               )}
             </div>
@@ -696,7 +696,7 @@ export default function NodePanel({
                             setShowMCPSelector(false);
                             onOpenSettings?.();
                           }}
-                          className="text-xs text-heat-100 hover:text-heat-200 font-medium"
+                          className="text-xs text-brand-600 hover:text-brand-700 font-medium"
                         >
                           Go to Settings to add MCP servers
                         </button>
@@ -716,12 +716,12 @@ export default function NodePanel({
                               <div className="flex items-center gap-8">
                                 <span className="text-sm font-medium text-accent-black">{server.name}</span>
                                 {isFirecrawl && (
-                                  <span className="px-6 py-2 bg-heat-4 text-heat-100 rounded-6 text-xs border border-heat-100 font-medium">
+                                  <span className="px-6 py-2 bg-brand-50 text-brand-600 rounded-6 text-xs border border-brand-200 font-medium">
                                     API Key Required
                                   </span>
                                 )}
                                 {server.connectionStatus === 'connected' && (
-                                  <span className="px-6 py-2 bg-heat-4 text-heat-100 rounded-6 text-xs border border-heat-100">
+                                  <span className="px-6 py-2 bg-brand-50 text-brand-600 rounded-6 text-xs border border-brand-200">
                                     Connected
                                   </span>
                                 )}
@@ -750,7 +750,7 @@ export default function NodePanel({
                                     href="https://www.firecrawl.dev/app/api-keys"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-xs text-heat-100 hover:text-heat-200 underline block -mt-6"
+                                    className="text-xs text-brand-600 hover:text-brand-700 underline block -mt-6"
                                   >
                                     Get API key here →
                                   </a>
@@ -785,7 +785,7 @@ export default function NodePanel({
                                     className={`px-12 py-8 rounded-8 text-xs font-medium transition-colors ${
                                       isConnected
                                         ? 'bg-accent-white border border-border-faint text-accent-black hover:bg-black-alpha-4'
-                                        : 'bg-heat-100 text-white hover:bg-heat-200'
+                                        : 'bg-brand-600 text-white hover:bg-brand-700'
                                     }`}
                                   >
                                     {isConnected ? 'Remove' : 'Add'}
@@ -804,7 +804,7 @@ export default function NodePanel({
                       >
                         <div className="flex items-center gap-8">
                           <span className="text-sm font-medium text-accent-black">Add New MCP Server</span>
-                          <span className="px-6 py-2 bg-heat-4 text-heat-100 rounded-6 text-xs border border-heat-100">
+                          <span className="px-6 py-2 bg-brand-50 text-brand-600 rounded-6 text-xs border border-brand-200">
                             Settings
                           </span>
                         </div>
@@ -828,7 +828,7 @@ export default function NodePanel({
                               setExpandedMcpId(null);
                               onOpenSettings?.();
                             }}
-                            className="px-16 py-10 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-xs font-medium transition-colors"
+                            className="px-16 py-10 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-xs font-medium transition-colors"
                           >
                             Go to Settings
                           </button>
@@ -848,7 +848,7 @@ export default function NodePanel({
                     return (
                       <div
                         key={serverId}
-                        className="px-14 py-10 bg-background-base rounded-10 border border-border-faint flex items-center justify-between group hover:border-heat-100 transition-colors"
+                        className="px-14 py-10 bg-background-base rounded-10 border border-border-faint flex items-center justify-between group hover:border-brand-600 transition-colors"
                       >
                         <div className="flex items-center gap-8">
                           <span className="text-sm text-accent-black font-mono">
@@ -901,7 +901,7 @@ export default function NodePanel({
               <select
                 value={outputFormat}
                 onChange={(e) => setOutputFormat(e.target.value)}
-                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors appearance-none cursor-pointer"
+                className="w-full px-14 py-10 bg-background-base border border-border-faint rounded-10 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors appearance-none cursor-pointer"
               >
                 <option value="Text">Text</option>
                 <option value="JSON">JSON</option>
@@ -925,7 +925,7 @@ export default function NodePanel({
                       const updated = [...schemaFields, newField];
                       setSchemaFields(updated);
                     }}
-                    className="px-10 py-6 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-xs font-medium transition-colors flex items-center gap-4"
+                    className="px-10 py-6 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-xs font-medium transition-colors flex items-center gap-4"
                   >
                     <svg
                       className="w-12 h-12"
@@ -972,7 +972,7 @@ export default function NodePanel({
                               updateSchemaFromFields(updated);
                             }}
                             placeholder="Field name"
-                            className="flex-1 px-10 py-6 bg-accent-white border border-border-faint rounded-6 text-sm text-accent-black placeholder-black-alpha-32 focus:outline-none focus:border-heat-100"
+                            className="flex-1 px-10 py-6 bg-accent-white border border-border-faint rounded-6 text-sm text-accent-black placeholder-black-alpha-32 focus:outline-none focus:border-brand-600"
                           />
                           <select
                             value={field.type}
@@ -982,7 +982,7 @@ export default function NodePanel({
                               setSchemaFields(updated);
                               updateSchemaFromFields(updated);
                             }}
-                            className="px-10 py-6 bg-accent-white border border-border-faint rounded-6 text-sm text-accent-black focus:outline-none focus:border-heat-100"
+                            className="px-10 py-6 bg-accent-white border border-border-faint rounded-6 text-sm text-accent-black focus:outline-none focus:border-brand-600"
                           >
                             <option value="string">string</option>
                             <option value="number">number</option>
@@ -1022,7 +1022,7 @@ export default function NodePanel({
 
                 {/* Raw JSON View Toggle */}
                 <details className="group">
-                  <summary className="cursor-pointer text-xs text-heat-100 hover:text-heat-200 transition-colors flex items-center gap-4 mb-8">
+                  <summary className="cursor-pointer text-xs text-brand-600 hover:text-brand-700 transition-colors flex items-center gap-4 mb-8">
                     <span>View Raw JSON</span>
                     <svg
                       className="w-12 h-12 transition-transform group-open:rotate-180"
@@ -1043,7 +1043,7 @@ export default function NodePanel({
                     onChange={(e) => setJsonOutputSchema(e.target.value)}
                     rows={6}
                     placeholder='{"type": "object", "properties": {...}}'
-                    className="w-full px-14 py-10 bg-gray-900 text-heat-100 border border-border-faint rounded-10 text-xs font-mono focus:outline-none focus:border-heat-100 transition-colors resize-y"
+                    className="w-full px-14 py-10 bg-gray-900 text-brand-600 border border-border-faint rounded-10 text-xs font-mono focus:outline-none focus:border-brand-600 transition-colors resize-y"
                   />
                 </details>
               </div>

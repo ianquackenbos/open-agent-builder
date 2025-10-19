@@ -88,7 +88,7 @@ export const ChartShimmer = ({
   return (
     <div className={cn("w-full h-full relative overflow-hidden", className)}>
       {/* Subtle fire glow background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-heat-4/10 via-transparent to-heat-4/10 animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-50/10 via-transparent to-brand-50/10 animate-pulse" />
 
       {/* Loading text */}
       {text && (

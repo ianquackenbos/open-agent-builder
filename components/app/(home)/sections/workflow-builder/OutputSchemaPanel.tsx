@@ -98,14 +98,14 @@ export default function OutputSchemaPanel({ nodeId, currentSchema, onUpdate }: O
                     value={field.name}
                     onChange={(e) => updateField(index, { name: e.target.value })}
                     placeholder="fieldName"
-                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
                   />
 
                   {/* Field Type */}
                   <select
                     value={field.type}
                     onChange={(e) => updateField(index, { type: e.target.value as any })}
-                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black focus:outline-none focus:border-heat-100 transition-colors"
+                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black focus:outline-none focus:border-brand-600 transition-colors"
                   >
                     <option value="string">String</option>
                     <option value="number">Number</option>
@@ -132,7 +132,7 @@ export default function OutputSchemaPanel({ nodeId, currentSchema, onUpdate }: O
                 value={field.description || ''}
                 onChange={(e) => updateField(index, { description: e.target.value })}
                 placeholder="Field description (optional)"
-                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-black-alpha-48 focus:outline-none focus:border-heat-100 transition-colors"
+                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-black-alpha-48 focus:outline-none focus:border-brand-600 transition-colors"
               />
             </motion.div>
           ))}
@@ -146,12 +146,12 @@ export default function OutputSchemaPanel({ nodeId, currentSchema, onUpdate }: O
             TypeScript Interface
           </label>
           <div className="p-12 bg-gray-900 rounded-8 border border-border-faint">
-            <pre className="text-body-small text-heat-100 font-mono whitespace-pre-wrap">
+            <pre className="text-body-small text-brand-600 font-mono whitespace-pre-wrap">
               {generateTypeScriptInterface()}
             </pre>
           </div>
           <p className="text-body-small text-black-alpha-48 mt-8">
-            Access fields: <code className="font-mono text-heat-100">state.variables.{nodeId}.fieldName</code>
+            Access fields: <code className="font-mono text-brand-600">state.variables.{nodeId}.fieldName</code>
           </p>
         </div>
       )}

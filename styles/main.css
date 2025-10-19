@@ -30,24 +30,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 240 5.9% 10%;
+    --primary: #0b5fff;            /* brand-600 */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: #eef6ff;              /* light blue backgrounds */
+    --muted-foreground: #0a4dcc;   /* dark blue text on muted */
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 220 100% 50%;         /* brand-600 equivalent */
+    --accent-foreground: #ffffff;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --ring: #66a6ff;               /* brand-400 */
 
     --radius: 0.5rem;
   }
@@ -161,7 +161,7 @@
 }
 
 .FireButton:hover {
-  box-shadow: 0 0 8px 2px #ff5d22af;
+  box-shadow: 0 0 8px 2px rgba(11, 95, 255, 0.7); /* brand-600 with alpha */
 }
 
 @keyframes overlayShow {

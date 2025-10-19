@@ -225,6 +225,18 @@ const themeConfig: Config = {
       colors: {
         transparent: "transparent",
         current: "currentColor",
+        brand: {
+          50: "#eef6ff",  // very light (was light orange bg)
+          100: "#dbeaff",
+          200: "#bfd9ff",
+          300: "#94c2ff",
+          400: "#66a6ff",
+          500: "#3b86ff",
+          600: "#0b5fff",  // primary dark blue
+          700: "#0a4dcc",  // hover/active
+          800: "#093ea5",
+          900: "#072e7a"
+        },
         ...colors
       },
       screens: {

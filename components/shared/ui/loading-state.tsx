@@ -48,7 +48,7 @@ export function LoadingState({
         {/* Spinner */}
         <div
           className={cn(
-            "mx-auto rounded-full border-2 border-black-alpha-20 border-t-heat-100 animate-spin",
+            "mx-auto rounded-full border-2 border-black-alpha-20 border-t-brand-600 animate-spin",
             spinnerSizes[size],
           )}
         />

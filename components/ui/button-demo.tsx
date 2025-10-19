@@ -6,7 +6,7 @@ export function ButtonDemo() {
       <div>
         <h2 className="text-title-h5 mb-4">Button Component - Two Variants</h2>
         <p className="text-body-medium text-black-alpha-64 mb-6">
-          Unified button system with only two variants: Primary (orange/heat) and Secondary (grey)
+          Unified button system with only two variants: Primary (brand blue) and Secondary (grey)
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export function ButtonDemo() {
             </svg>
             <span className="relative">
               Notifications
-              <span className="absolute -right-4 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-heat-100 text-white text-10 font-semibold z-10">1</span>
+              <span className="absolute -right-4 -top-10 flex h-20 w-20 items-center justify-center rounded-full bg-brand-600 text-white text-10 font-semibold z-10">1</span>
             </span>
           </Button>
 

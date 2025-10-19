@@ -22,10 +22,10 @@ export function CustomNode({ data, selected }: NodeProps) {
   const getBorderStyle = () => {
     // Note nodes have no border
     if (nodeType === 'note') return 'none';
-    if (isRunning) return '1px solid #FA5D19';
+    if (isRunning) return '1px solid #0B5FFF';
     if (executionStatus === 'completed') return '1px solid #9ca3af';
     if (executionStatus === 'failed') return '1px solid #eb3424';
-    if (selected) return '1px solid #FA5D19';
+    if (selected) return '1px solid #0B5FFF';
     return '1px solid #e5e7eb';
   };
 
@@ -49,7 +49,7 @@ export function CustomNode({ data, selected }: NodeProps) {
   const getTextColor = () => {
     if (isNoteNode) return '#854d0e'; // Dark yellow text for note nodes
     if (nodeType === 'if-else' || nodeType === 'while') {
-      return '#18181b'; // Dark text for orange background nodes
+      return '#18181b'; // Dark text for brand green background nodes
     }
     return '#18181b'; // Default dark text
   };
@@ -220,7 +220,7 @@ export function CustomNode({ data, selected }: NodeProps) {
             style={{
               width: 10,
               height: 10,
-              background: '#FA5D19',
+              background: '#0B5FFF',
               border: '2px solid white',
               right: -5,
               top: '35%',
@@ -249,7 +249,7 @@ export function CustomNode({ data, selected }: NodeProps) {
             right: -50,
             transform: 'translateY(-50%)',
             fontSize: '10px',
-            color: '#FA5D19',
+            color: '#0B5FFF',
             fontWeight: 600,
           }}>If</div>
           <div style={{
@@ -324,7 +324,7 @@ export function CustomNode({ data, selected }: NodeProps) {
             style={{
               width: 10,
               height: 10,
-              background: '#FA5D19',
+              background: '#0B5FFF',
               border: '2px solid white',
               right: -5,
               top: '35%',
@@ -353,7 +353,7 @@ export function CustomNode({ data, selected }: NodeProps) {
             right: -70,
             transform: 'translateY(-50%)',
             fontSize: '10px',
-            color: '#FA5D19',
+            color: '#0B5FFF',
             fontWeight: 600,
           }}>Continue</div>
           <div style={{

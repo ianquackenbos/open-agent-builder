@@ -91,14 +91,14 @@ export default function NodeArgumentsPanel({ nodeId, currentArgs, onUpdate }: No
                     value={arg.name}
                     onChange={(e) => updateArgument(index, { name: e.target.value })}
                     placeholder="argumentName"
-                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
                   />
 
                   {/* Argument Type */}
                   <select
                     value={arg.type}
                     onChange={(e) => updateArgument(index, { type: e.target.value as any })}
-                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black focus:outline-none focus:border-heat-100 transition-colors"
+                    className="px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black focus:outline-none focus:border-brand-600 transition-colors"
                   >
                     <option value="string">String</option>
                     <option value="number">Number</option>
@@ -129,7 +129,7 @@ export default function NodeArgumentsPanel({ nodeId, currentArgs, onUpdate }: No
                   value={arg.reference || ''}
                   onChange={(e) => updateArgument(index, { reference: e.target.value })}
                   placeholder="state.variables.node_1.price or 'default value'"
-                  className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+                  className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
                 />
                 <p className="text-body-small text-black-alpha-32">
                   Reference previous node output or set a default value
@@ -142,7 +142,7 @@ export default function NodeArgumentsPanel({ nodeId, currentArgs, onUpdate }: No
                 <button
                   onClick={() => updateArgument(index, { required: !arg.required })}
                   className={`w-36 h-20 rounded-full transition-colors relative ${
-                    arg.required ? 'bg-heat-100' : 'bg-black-alpha-12'
+                    arg.required ? 'bg-brand-600' : 'bg-black-alpha-12'
                   }`}
                 >
                   <motion.div
@@ -161,14 +161,14 @@ export default function NodeArgumentsPanel({ nodeId, currentArgs, onUpdate }: No
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="p-12 bg-heat-4 rounded-8 border border-heat-100"
+          className="p-12 bg-brand-50 rounded-8 border border-brand-600"
         >
           <p className="text-body-small text-accent-black mb-12">
             Add a new argument to define what this node receives
           </p>
           <button
             onClick={addArgument}
-            className="w-full px-12 py-8 bg-heat-100 hover:bg-heat-200 text-white rounded-6 text-body-small font-medium transition-colors"
+            className="w-full px-12 py-8 bg-brand-600 hover:bg-brand-700 text-white rounded-6 text-body-small font-medium transition-colors"
           >
             Create Argument
           </button>
@@ -177,26 +177,26 @@ export default function NodeArgumentsPanel({ nodeId, currentArgs, onUpdate }: No
 
       {/* Quick Reference Guide */}
       <details className="group">
-        <summary className="cursor-pointer list-none p-12 bg-heat-4 rounded-8 border border-heat-100 text-body-small text-accent-black hover:bg-heat-8 transition-colors">
+        <summary className="cursor-pointer list-none p-12 bg-brand-50 rounded-8 border border-brand-600 text-body-small text-accent-black hover:bg-brand-100 transition-colors">
           📖 Variable Reference Guide
         </summary>
-        <div className="mt-8 p-12 bg-heat-4 rounded-8 border border-heat-100 space-y-6 text-body-small text-accent-black font-mono">
+        <div className="mt-8 p-12 bg-brand-50 rounded-8 border border-brand-600 space-y-6 text-body-small text-accent-black font-mono">
           <div>
             <strong>Workflow Input:</strong>
-            <code className="block mt-4 text-heat-100">state.variables.input</code>
+            <code className="block mt-4 text-brand-600">state.variables.input</code>
           </div>
           <div>
             <strong>Previous Node Output:</strong>
-            <code className="block mt-4 text-heat-100">state.variables.lastOutput</code>
+            <code className="block mt-4 text-brand-600">state.variables.lastOutput</code>
           </div>
           <div>
             <strong>Specific Node Output:</strong>
-            <code className="block mt-4 text-heat-100">state.variables.node_1.price</code>
-            <code className="block mt-2 text-heat-100">state.variables.agent_extract.data</code>
+            <code className="block mt-4 text-brand-600">state.variables.node_1.price</code>
+            <code className="block mt-2 text-brand-600">state.variables.agent_extract.data</code>
           </div>
           <div>
             <strong>Custom Variables:</strong>
-            <code className="block mt-4 text-heat-100">state.variables.myCustomVar</code>
+            <code className="block mt-4 text-brand-600">state.variables.myCustomVar</code>
           </div>
         </div>
       </details>

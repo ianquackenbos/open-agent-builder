@@ -6,7 +6,7 @@ import { CheckCircle, XCircle, AlertCircle, Key, Copy, Trash2, Upload, Plug, Plu
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
+import { useSessionUser } from "@/app/providers/AuthProvider";
 import { Id } from "@/convex/_generated/dataModel";
 import PasteConfigModal from "./PasteConfigModal";
 
@@ -55,7 +55,7 @@ interface MCPCardProps {
 }
 
 export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
-  const { user } = useUser();
+  const user = useSessionUser();
   const [serverConfig, setServerConfig] = useState<ServerAPIConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [newKeyName, setNewKeyName] = useState("");
@@ -130,7 +130,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
 
   const StatusIcon = ({ configured }: { configured: boolean }) =>
     configured ? (
-      <CheckCircle className="w-16 h-16 text-heat-100" />
+      <CheckCircle className="w-16 h-16 text-brand-600" />
     ) : (
       <XCircle className="w-16 h-16 text-black-alpha-32" />
     );
@@ -177,7 +177,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
           <div className="p-24 overflow-y-auto flex-1">
             {loading ? (
               <div className="text-center py-32">
-                <div className="inline-block w-32 h-32 border-4 border-heat-100 border-t-transparent rounded-full animate-spin"></div>
+                <div className="inline-block w-32 h-32 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
                 <p className="text-body-small text-black-alpha-48 mt-12">Loading configuration...</p>
               </div>
             ) : (
@@ -188,7 +188,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                     <h3 className="text-label-large font-medium text-accent-black">LLM Providers</h3>
                     <button
                       onClick={() => setShowAddLLMKey(true)}
-                      className="px-12 py-6 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
+                      className="px-12 py-6 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
                     >
                       <Plus className="w-14 h-14" />
                       Add API Key
@@ -260,7 +260,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                     })}
                   </div>
 
-                  <div className="mt-8 p-12 bg-heat-4 border border-heat-100 rounded-8">
+                  <div className="mt-8 p-12 bg-brand-50 border border-brand-200 rounded-8">
                     <p className="text-xs text-black-alpha-64">
                       <strong>Note:</strong> Your API keys take priority over environment variables.
                       Keys are encrypted and stored securely per user.
@@ -287,9 +287,9 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
 
                   {/* Show generated key once */}
                   {generatedKey && (
-                    <div className="p-16 bg-heat-4 border border-heat-100 rounded-8 mb-12">
+                    <div className="p-16 bg-brand-50 border border-brand-200 rounded-8 mb-12">
                       <div className="flex items-start gap-12 mb-12">
-                        <AlertCircle className="w-20 h-20 text-heat-100 flex-shrink-0 mt-2" />
+                        <AlertCircle className="w-20 h-20 text-brand-600 flex-shrink-0 mt-2" />
                         <div className="flex-1">
                           <p className="text-body-medium text-accent-black font-medium mb-4">
                             Save this key now!
@@ -349,7 +349,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
 
                         toast.success('API key generated');
                       }}
-                      className="px-16 py-8 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
+                      className="px-16 py-8 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
                     >
                       <Key className="w-14 h-14" />
                       Generate
@@ -405,7 +405,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                       </button>
                       <button
                         onClick={() => setShowAddMCPModal(true)}
-                        className="px-12 py-6 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
+                        className="px-12 py-6 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-small font-medium transition-all active:scale-[0.98] flex items-center gap-6"
                       >
                         <Plus className="w-14 h-14" />
                         Add MCP Server
@@ -504,7 +504,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                         </p>
                         <button
                           onClick={() => setShowAddMCPModal(true)}
-                          className="px-20 py-10 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98]"
+                          className="px-20 py-10 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98]"
                         >
                           Add Your First MCP Server
                         </button>
@@ -514,9 +514,9 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                 </div>
 
                 {/* Info Box */}
-                <div className="p-16 bg-heat-4 border border-heat-100 rounded-8">
+                <div className="p-16 bg-brand-50 border border-brand-200 rounded-8">
                   <div className="flex items-start gap-12">
-                    <AlertCircle className="w-20 h-20 text-heat-100 flex-shrink-0 mt-2" />
+                    <AlertCircle className="w-20 h-20 text-brand-600 flex-shrink-0 mt-2" />
                     <div>
                       <p className="text-body-medium text-accent-black font-medium mb-4">
                         How to Configure
@@ -757,7 +757,7 @@ function MCPCard({
 
   const getStatusColor = () => {
     switch (server.connectionStatus) {
-      case 'connected': return 'text-heat-100';
+      case 'connected': return 'text-brand-600';
       case 'error': return 'text-accent-black';
       default: return 'text-black-alpha-32';
     }
@@ -765,7 +765,7 @@ function MCPCard({
 
   const getStatusIcon = () => {
     if (isTesting) {
-      return <Loader2 className="w-16 h-16 animate-spin text-heat-100" />;
+      return <Loader2 className="w-16 h-16 animate-spin text-brand-600" />;
     }
     switch (server.connectionStatus) {
       case 'connected': return <CheckCircle className="w-16 h-16" />;
@@ -800,7 +800,7 @@ function MCPCard({
           <div className="flex items-center gap-8">
             <p className="text-body-small text-accent-black font-medium">{server.name}</p>
             {server.isOfficial && (
-              <span className="px-6 py-2 bg-heat-4 text-heat-100 text-xs rounded-4 font-medium">
+              <span className="px-6 py-2 bg-brand-50 text-brand-600 text-xs rounded-4 font-medium">
                 Official
               </span>
             )}
@@ -814,7 +814,7 @@ function MCPCard({
               href="https://www.firecrawl.dev/app/api-keys"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-heat-100 hover:text-heat-200 mt-2 underline block"
+              className="text-xs text-brand-600 hover:text-brand-700 mt-2 underline block"
             >
               Get API key here →
             </a>
@@ -831,7 +831,7 @@ function MCPCard({
               onChange={onToggle}
               className="sr-only peer"
             />
-            <div className="w-36 h-20 bg-black-alpha-8 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-16 after:w-16 after:transition-all peer-checked:bg-heat-100"></div>
+            <div className="w-36 h-20 bg-black-alpha-8 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-16 after:w-16 after:transition-all peer-checked:bg-brand-600"></div>
           </label>
         </div>
       </div>
@@ -1110,10 +1110,10 @@ function AddMCPModal({ isOpen, onClose, onSave, editingServer }: AddMCPModalProp
               <label className="text-body-small text-black-alpha-64 mb-4 block">
                 Discovered Tools ({discoveredTools.length})
               </label>
-              <div className="p-12 bg-heat-4 rounded-8 border border-heat-100">
+              <div className="p-12 bg-brand-50 rounded-8 border border-brand-200">
                 <div className="flex flex-wrap gap-4">
                   {discoveredTools.map((tool) => (
-                    <span key={tool} className="px-6 py-2 bg-white text-heat-100 rounded-4 text-xs font-medium border border-heat-100">
+                    <span key={tool} className="px-6 py-2 bg-white text-brand-600 rounded-4 text-xs font-medium border border-brand-200">
                       {tool}
                     </span>
                   ))}
@@ -1136,7 +1136,7 @@ function AddMCPModal({ isOpen, onClose, onSave, editingServer }: AddMCPModalProp
               tools: discoveredTools || [],
               headers: editingServer?.headers
             })}
-            className="flex-1 px-20 py-12 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all"
+            className="flex-1 px-20 py-12 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-medium font-medium transition-all"
           >
             {editingServer ? 'Update' : 'Add to Registry'}
           </button>
@@ -1248,7 +1248,7 @@ function AddLLMKeyModal({ isOpen, onClose, selectedProvider, onSave }: AddLLMKey
               href={getProviderHelpLink(formData.provider)}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-heat-100 hover:text-heat-200 mt-2 underline block"
+              className="text-xs text-brand-600 hover:text-brand-700 mt-2 underline block"
             >
               Get your {formData.provider} API key →
             </a>
@@ -1265,7 +1265,7 @@ function AddLLMKeyModal({ isOpen, onClose, selectedProvider, onSave }: AddLLMKey
             />
           </div>
 
-          <div className="p-12 bg-heat-4 border border-heat-100 rounded-8">
+          <div className="p-12 bg-brand-50 border border-brand-200 rounded-8">
             <p className="text-xs text-black-alpha-64">
               <strong>Security:</strong> Your API key will be encrypted and stored securely.
               It will only be accessible by you and never shared across users.
@@ -1295,7 +1295,7 @@ function AddLLMKeyModal({ isOpen, onClose, selectedProvider, onSave }: AddLLMKey
               }
             }}
             disabled={isSaving || !formData.apiKey}
-            className="flex-1 px-20 py-12 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all disabled:opacity-50 flex items-center justify-center gap-6"
+            className="flex-1 px-20 py-12 bg-brand-600 hover:bg-brand-700 text-white rounded-8 text-body-medium font-medium transition-all disabled:opacity-50 flex items-center justify-center gap-6"
           >
             {isSaving ? (
               <>

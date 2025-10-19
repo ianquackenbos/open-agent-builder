@@ -138,7 +138,7 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
                           type="text"
                           value={variable.name}
                           onChange={(e) => updateVariable(index, { name: e.target.value })}
-                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-heat-100"
+                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-brand-600"
                           placeholder="variable_name"
                         />
                       </div>
@@ -149,7 +149,7 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
                         <select
                           value={variable.type}
                           onChange={(e) => updateVariable(index, { type: e.target.value as any })}
-                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100"
+                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600"
                         >
                           <option value="string">String</option>
                           <option value="number">Number</option>
@@ -166,7 +166,7 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
                           type="text"
                           value={variable.description || ''}
                           onChange={(e) => updateVariable(index, { description: e.target.value })}
-                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100"
+                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600"
                           placeholder="Describe this input..."
                         />
                       </div>
@@ -178,7 +178,7 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
                           type="text"
                           value={variable.defaultValue || ''}
                           onChange={(e) => updateVariable(index, { defaultValue: e.target.value })}
-                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100"
+                          className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600"
                           placeholder="Default value..."
                         />
                       </div>
@@ -190,7 +190,7 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
                             type="checkbox"
                             checked={variable.required}
                             onChange={(e) => updateVariable(index, { required: e.target.checked })}
-                            className="w-16 h-16 rounded-4 border border-border-faint text-heat-100 focus:ring-heat-100"
+                            className="w-16 h-16 rounded-4 border border-border-faint text-brand-600 focus:ring-brand-400"
                           />
                           <span className="text-xs text-accent-black">Required</span>
                         </label>
@@ -212,14 +212,14 @@ export default function StartNodePanel({ node, onClose, onUpdate }: StartNodePan
             </div>
 
             {/* Help Text */}
-            <div className="p-16 bg-heat-4 border border-heat-100 rounded-12">
+            <div className="p-16 bg-brand-50 border border-brand-600 rounded-12">
               <h4 className="text-sm font-medium text-accent-black mb-8">Input Variables</h4>
-              <p className="text-xs text-heat-100 leading-relaxed">
+              <p className="text-xs text-brand-600 leading-relaxed">
                 Input variables define the data your workflow accepts when it starts.
                 These will be shown as form fields when running the workflow.
               </p>
-              <p className="text-xs text-heat-100 leading-relaxed mt-8">
-                Use <code className="px-4 py-2 bg-heat-8 rounded text-accent-black">{`{{variable_name}}`}</code> in any node to reference these values.
+              <p className="text-xs text-brand-600 leading-relaxed mt-8">
+                Use <code className="px-4 py-2 bg-brand-100 rounded text-accent-black">{`{{variable_name}}`}</code> in any node to reference these values.
               </p>
             </div>
           </div>

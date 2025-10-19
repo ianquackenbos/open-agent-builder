@@ -75,7 +75,7 @@ export default function UniversalOutputSelector({
             onClick={() => setOutputAs('full')}
             className={`w-full p-12 rounded-8 border transition-all text-left ${
               outputAs === 'full'
-                ? 'border-heat-100 bg-heat-4'
+                ? 'border-brand-600 bg-brand-50'
                 : 'border-border-faint bg-background-base hover:border-border-light'
             }`}
           >
@@ -90,7 +90,7 @@ export default function UniversalOutputSelector({
             onClick={() => setOutputAs('field')}
             className={`w-full p-12 rounded-8 border transition-all text-left ${
               outputAs === 'field'
-                ? 'border-heat-100 bg-heat-4'
+                ? 'border-brand-600 bg-brand-50'
                 : 'border-border-faint bg-background-base hover:border-border-light'
             }`}
           >
@@ -101,14 +101,14 @@ export default function UniversalOutputSelector({
           </button>
 
           {outputAs === 'field' && (
-            <div className="ml-16 pl-12 border-l-2 border-heat-100">
+            <div className="ml-16 pl-12 border-l-2 border-brand-600">
               <label className="block text-body-small text-black-alpha-48 mb-6">
                 Field Name
               </label>
               <select
                 value={fieldName}
                 onChange={(e) => setFieldName(e.target.value)}
-                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors mb-8"
+                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors mb-8"
               >
                 {defaultFields.map(field => (
                   <option key={field} value={field}>{field}</option>
@@ -125,12 +125,12 @@ export default function UniversalOutputSelector({
                     setFieldName(e.target.value);
                   }}
                   placeholder="data.items[0].title"
-                  className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+                  className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
                 />
               )}
 
               <p className="text-body-small text-black-alpha-48 mt-8">
-                Access as: <code className="font-mono text-xs text-heat-100">state.variables.{nodeId}</code>
+                Access as: <code className="font-mono text-xs text-brand-600">state.variables.{nodeId}</code>
               </p>
             </div>
           )}
@@ -140,7 +140,7 @@ export default function UniversalOutputSelector({
             onClick={() => setOutputAs('custom')}
             className={`w-full p-12 rounded-8 border transition-all text-left ${
               outputAs === 'custom'
-                ? 'border-heat-100 bg-heat-4'
+                ? 'border-brand-600 bg-brand-50'
                 : 'border-border-faint bg-background-base hover:border-border-light'
             }`}
           >
@@ -151,13 +151,13 @@ export default function UniversalOutputSelector({
           </button>
 
           {outputAs === 'custom' && (
-            <div className="ml-16 pl-12 border-l-2 border-heat-100">
+            <div className="ml-16 pl-12 border-l-2 border-brand-600">
               <input
                 type="text"
                 value={customPath}
                 onChange={(e) => setCustomPath(e.target.value)}
                 placeholder="result.data.items[0].title"
-                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+                className="w-full px-10 py-6 bg-white border border-border-faint rounded-6 text-body-small text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
               />
               <p className="text-body-small text-black-alpha-48 mt-8">
                 Supports dot notation and array indexing

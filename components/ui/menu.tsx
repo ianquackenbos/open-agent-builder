@@ -386,7 +386,7 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
       default:
         "text-foreground-dimmer hover:text-foreground hover:bg-transparent",
       danger: "text-red-600/70 hover:text-red-600 hover:bg-red-50",
-      active: "text-heat-100 bg-heat-8 hover:bg-heat-12",
+      active: "text-brand-600 bg-brand-100 hover:bg-brand-200",
       ghost: "hover:bg-transparent",
     };
 

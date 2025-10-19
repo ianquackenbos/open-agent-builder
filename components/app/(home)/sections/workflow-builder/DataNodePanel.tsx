@@ -76,7 +76,7 @@ return result;`,
           <select
             value={stateValue}
             onChange={(e) => setStateValue(e.target.value)}
-            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors"
+            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors"
           >
             <option value="true">true</option>
             <option value="false">false</option>
@@ -89,7 +89,7 @@ return result;`,
             value={stateValue}
             onChange={(e) => setStateValue(e.target.value)}
             placeholder="42 or {{lastOutput.count}}"
-            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors"
+            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors"
           />
         );
       case "json":
@@ -99,7 +99,7 @@ return result;`,
             onChange={(e) => setStateValue(e.target.value)}
             rows={4}
             placeholder='{"key": "value"} or {{lastOutput}}'
-            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors resize-none"
+            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors resize-none"
           />
         );
       case "expression":
@@ -109,7 +109,7 @@ return result;`,
             onChange={(e) => setStateValue(e.target.value)}
             rows={3}
             placeholder="input.price * 1.1"
-            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-heat-100 transition-colors resize-none"
+            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-brand-600 transition-colors resize-none"
           />
         );
       default:
@@ -119,7 +119,7 @@ return result;`,
             value={stateValue}
             onChange={(e) => setStateValue(e.target.value)}
             placeholder="Hello {{input.name}}"
-            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors"
+            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors"
           />
         );
     }
@@ -221,16 +221,16 @@ return result;`,
                       value={transformScript}
                       onChange={(e) => setTransformScript(e.target.value)}
                       rows={20}
-                      className="w-full px-12 py-10 bg-[#1e1e1e] text-[#d4d4d4] border border-border-faint rounded-8 text-sm font-mono focus:outline-none focus:border-heat-100 transition-colors resize-none"
+                      className="w-full px-12 py-10 bg-[#1e1e1e] text-[#d4d4d4] border border-border-faint rounded-8 text-sm font-mono focus:outline-none focus:border-brand-600 transition-colors resize-none"
                       placeholder="// Transform the input data using TypeScript"
                       spellCheck={false}
                     />
                     <div className="mt-8 text-xs text-black-alpha-48 space-y-4">
                       <p>Available variables:</p>
                       <ul className="list-disc list-inside space-y-2 ml-8">
-                        <li><code className="px-4 py-1 bg-background-base rounded text-heat-100 font-mono">input</code> - Current input data</li>
-                        <li><code className="px-4 py-1 bg-background-base rounded text-heat-100 font-mono">lastOutput</code> - Output from previous node</li>
-                        <li><code className="px-4 py-1 bg-background-base rounded text-heat-100 font-mono">state</code> - Workflow state with variables</li>
+                        <li><code className="px-4 py-1 bg-background-base rounded text-brand-600 font-mono">input</code> - Current input data</li>
+                        <li><code className="px-4 py-1 bg-background-base rounded text-brand-600 font-mono">lastOutput</code> - Output from previous node</li>
+                        <li><code className="px-4 py-1 bg-background-base rounded text-brand-600 font-mono">state</code> - Workflow state with variables</li>
                       </ul>
                       <p className="mt-8">Your function should return an object with the transformed data.</p>
                     </div>
@@ -264,10 +264,10 @@ return result;`,
                             value={stateKey}
                             onChange={(e) => setStateKey(e.target.value)}
                             placeholder="myVariable"
-                            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-heat-100"
+                            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black font-mono focus:outline-none focus:border-brand-600"
                           />
                           <p className="text-xs text-black-alpha-48 mt-4">
-                            Access later with <code className="px-4 py-1 bg-background-base rounded text-heat-100 font-mono text-xs">{`{{state.${stateKey}}}`}</code>
+                            Access later with <code className="px-4 py-1 bg-background-base rounded text-brand-600 font-mono text-xs">{`{{state.${stateKey}}}`}</code>
                           </p>
                         </div>
 
@@ -279,7 +279,7 @@ return result;`,
                           <select
                             value={valueType}
                             onChange={(e) => setValueType(e.target.value as any)}
-                            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-heat-100 transition-colors appearance-none cursor-pointer"
+                            className="w-full px-12 py-8 bg-accent-white border border-border-faint rounded-8 text-sm text-accent-black focus:outline-none focus:border-brand-600 transition-colors appearance-none cursor-pointer"
                           >
                             <option value="string">String</option>
                             <option value="number">Number</option>

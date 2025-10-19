@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from "react";
 import * as React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
+import { useSessionUser } from "@/app/providers/AuthProvider";
 
 // Import shared components
 import Button from "@/components/shared/button/Button";
@@ -15,11 +15,6 @@ import AsciiExplosion from "@/components/shared/effects/flame/ascii-explosion";
 import { HeaderProvider } from "@/components/shared/header/HeaderContext";
 
 // Import hero section components
-import HomeHeroBackground from "@/components/app/(home)/sections/hero/Background/Background";
-import { BackgroundOuterPiece } from "@/components/app/(home)/sections/hero/Background/BackgroundOuterPiece";
-import HomeHeroBadge from "@/components/app/(home)/sections/hero/Badge/Badge";
-import HomeHeroPixi from "@/components/app/(home)/sections/hero/Pixi/Pixi";
-import HomeHeroTitle from "@/components/app/(home)/sections/hero/Title/Title";
 import HeroInputSubmitButton from "@/components/app/(home)/sections/hero-input/Button/Button";
 import Globe from "@/components/app/(home)/sections/hero-input/_svg/Globe";
 import { Endpoint } from "@/components/shared/Playground/Context/types";
@@ -36,6 +31,7 @@ import ButtonUI from "@/components/ui/shadcn/button";
 function StyleGuidePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const user = useSessionUser();
 
   const [tab] = useState<Endpoint>(Endpoint.Scrape);
   const [url, setUrl] = useState<string>("");
@@ -90,13 +86,11 @@ function StyleGuidePageContent() {
   return (
     <HeaderProvider>
       {showWorkflowBuilder ? (
-        <SignedIn>
-          <WorkflowBuilder
-            onBack={handleReset}
-            initialWorkflowId={loadWorkflowId}
-            initialTemplateId={loadTemplateId}
-          />
-        </SignedIn>
+        <WorkflowBuilder
+          onBack={handleReset}
+          initialWorkflowId={loadWorkflowId}
+          initialTemplateId={loadTemplateId}
+        />
       ) : (
       <div className="min-h-screen bg-background-base">
         {/* Header/Navigation Section */}
@@ -131,38 +125,24 @@ function StyleGuidePageContent() {
                   </ButtonUI>
                 </a>
 
-                {/* Clerk Auth */}
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <button className="px-16 py-8 bg-heat-100 hover:bg-heat-200 text-white rounded-8 text-body-medium font-medium transition-all active:scale-[0.98]">
-                      Sign In
-                    </button>
-                  </SignInButton>
-                </SignedOut>
-
-                <SignedIn>
-                  <UserButton
-                    appearance={{
-                      elements: {
-                        avatarBox: "w-32 h-32",
-                      }
-                    }}
-                    afterSignOutUrl="/"
-                  />
-                </SignedIn>
+                {/* Auth */}
+                {user ? (
+                  <div className="px-16 py-8 bg-brand-600 text-white rounded-8 text-body-medium font-medium">
+                    {user.name}
+                  </div>
+                ) : (
+                  <div className="px-16 py-8 bg-brand-600 text-white rounded-8 text-body-medium font-medium">
+                    Loading...
+                  </div>
+                )}
               </div>
             </div>
           </HeaderWrapper>
         </div>
 
         {/* Hero Section */}
-        <section className="overflow-x-clip" id="home-hero">
+        <section className="overflow-x-clip relative" id="home-hero">
           <div className="pt-28 lg:pt-254 lg:-mt-100 pb-115 relative" id="hero-content">
-            <HomeHeroPixi />
-            <HeroFlame />
-            <BackgroundOuterPiece />
-            <HomeHeroBackground />
-
             <AnimatePresence mode="wait">
               {!showStep2 ? (
                 <motion.div
@@ -172,81 +152,62 @@ function StyleGuidePageContent() {
                   transition={{ duration: 0.5 }}
                   className="relative container px-16"
                 >
-                  <HomeHeroBadge />
-                  <HomeHeroTitle />
+                  {/* Capsule Tag */}
+                  <div className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full mb-8 mx-auto shadow-sm">
+                    <span className="text-sm font-medium text-gray-700">
+                      OpenAI Inspired Agent Builder
+                    </span>
+                  </div>
 
-                  <p className="text-center text-body-large">
-                    Build intelligent web scraping workflows powered by AI.
-                    <br className="lg-max:hidden" />
-                    Turn any website into structured, agent-ready data.
-                    <Link
-                      className="bg-black-alpha-4 hover:bg-black-alpha-6 lg:ml-4 rounded-6 px-8 lg:px-6 text-label-large lg-max:py-2 h-30 lg:h-24 block lg-max:mt-8 lg-max:mx-auto lg-max:w-max lg:inline-block gap-4 transition-all"
-                      href="https://firecrawl.dev"
-                      target="_blank"
-                    >
-                      AI agent workflows
-                    </Link>
+                  {/* Main Headline */}
+                  <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center">
+                    <span className="text-black drop-shadow-sm">SUSE</span>{" "}
+                    <span className="text-[#0066ff] drop-shadow-sm">Agent Builder</span>
+                  </h1>
+
+                  {/* Description */}
+                  <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed text-center drop-shadow-sm">
+                    Build intelligent web scraping workflows powered by AI. Turn any website into structured, agent-ready data.
                   </p>
+
+                  {/* Call-to-Action Button */}
+                  <div className="flex justify-center">
+                    <button
+                      onClick={handleSubmit}
+                      className="bg-[#0066ff] hover:bg-[#0052cc] text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-200 transform hover:scale-105 shadow-xl"
+                    >
+                      Start building
+                    </button>
+                  </div>
                 </motion.div>
               ) : (
-                <SignedIn>
-                  <motion.div
-                    key="step2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative container px-16"
-                  >
-                    <Step2Placeholder
-                      onReset={handleReset}
-                      onCreateWorkflow={handleCreateWorkflow}
-                      onLoadWorkflow={(id) => {
-                        setLoadWorkflowId(id);
-                        setLoadTemplateId(null);
-                        setShowWorkflowBuilder(true);
-                        router.push(`/?workflow=${id}`);
-                      }}
-                      onLoadTemplate={(templateId) => {
-                        setLoadTemplateId(templateId);
-                        setLoadWorkflowId(null);
-                        setShowWorkflowBuilder(true);
-                        router.push(`/?template=${templateId}`);
-                      }}
-                    />
-                  </motion.div>
-                </SignedIn>
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative container px-16"
+                >
+                  <Step2Placeholder
+                    onReset={handleReset}
+                    onCreateWorkflow={handleCreateWorkflow}
+                    onLoadWorkflow={(id) => {
+                      setLoadWorkflowId(id);
+                      setLoadTemplateId(null);
+                      setShowWorkflowBuilder(true);
+                      router.push(`/?workflow=${id}`);
+                    }}
+                    onLoadTemplate={(templateId) => {
+                      setLoadTemplateId(templateId);
+                      setLoadWorkflowId(null);
+                      setShowWorkflowBuilder(true);
+                      router.push(`/?template=${templateId}`);
+                    }}
+                  />
+                </motion.div>
               )}
             </AnimatePresence>
           </div>
-          
-          {/* Start Building Button */}
-          {!showStep2 && (
-            <motion.div
-              className="flex justify-center -mt-90 relative z-10"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* When signed in - navigate to workflows */}
-              <SignedIn>
-                <button
-                  onClick={handleSubmit}
-                  className="bg-heat-100 hover:bg-heat-200 text-white font-medium px-32 py-12 rounded-10 transition-all active:scale-[0.98] text-body-medium shadow-md cursor-pointer"
-                >
-                  Start building
-                </button>
-              </SignedIn>
-
-              {/* When signed out - open sign-in modal */}
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="bg-heat-100 hover:bg-heat-200 text-white font-medium px-32 py-12 rounded-10 transition-all active:scale-[0.98] text-body-medium shadow-md cursor-pointer">
-                    Start building
-                  </button>
-                </SignInButton>
-              </SignedOut>
-            </motion.div>
-          )}
         </section>
       </div>
       )}

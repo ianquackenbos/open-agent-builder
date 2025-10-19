@@ -18,7 +18,7 @@ export default function Toggle({
     <button
       className={cn(
         "transition-all relative rounded-full group",
-        checked ? "bg-heat-100" : "bg-black-alpha-10",
+        checked ? "bg-brand-600" : "bg-black-alpha-10",
       )}
       style={{
         width: "50px",

@@ -1,0 +1,113 @@
+/* Brand Overrides - Force Rancher Blue for React Flow and Callouts */
+
+/* React Flow Node Overrides */
+.react-flow__node.executing-node {
+  border-color: #0B5FFF !important;
+}
+
+.react-flow__edge.active-edge {
+  stroke: #0B5FFF !important;
+}
+
+.react-flow__edge.selected-edge {
+  stroke: #0B5FFF !important;
+}
+
+/* Enhanced React Flow Node Overrides */
+.react-flow__node,
+.react-flow__node.selected,
+.react-flow__node:focus,
+.react-flow__node:active { 
+  border-color: #0B5FFF !important; 
+}
+
+.react-flow__node .outline,
+.react-flow__node .border { 
+  border-color: #0B5FFF !important; 
+}
+
+.react-flow__handle, 
+.react-flow__handle .dot {
+  background-color: #0B5FFF !important; 
+  border-color: #0B5FFF !important;
+}
+
+.react-flow__edge-path,
+.react-flow__edge.animated path,
+.react-flow__connectionline path { 
+  stroke: #0B5FFF !important; 
+}
+
+/* Workflow execution animations with Rancher blue */
+@keyframes pulse-brand {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(11, 95, 255, 0.4), 0 0 20px 0 rgba(11, 95, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(11, 95, 255, 0), 0 0 30px 0 rgba(11, 95, 255, 0);
+  }
+}
+
+@keyframes glow-brand {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(11, 95, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(11, 95, 255, 0.8));
+  }
+}
+
+@keyframes glow-edge-brand {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(11, 95, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(11, 95, 255, 0.8));
+  }
+}
+
+.executing-node {
+  animation: pulse-brand 2s ease-in-out infinite;
+  border-color: #0B5FFF !important;
+}
+
+.react-flow__edge.active-edge {
+  animation: dash 1.5s linear infinite, glow-edge-brand 2s ease-in-out infinite;
+}
+
+/* Callout and info bubble overrides */
+.callout-brand {
+  background-color: #EEF6FF !important;
+  border-color: #0B5FFF !important;
+  color: #0A4DCC !important;
+}
+
+.info-bubble-brand {
+  background-color: #EEF6FF !important;
+  border-color: #0B5FFF !important;
+}
+
+/* Enhanced Callouts / info panels on the right */
+.callout, 
+.info-bubble, 
+.help-box, 
+.note--info, 
+.alert--info {
+  background: #EEF6FF !important; 
+  border-color: #0B5FFF !important; 
+  color: #0A4DCC !important;
+}
+
+.callout .badge, 
+.info-bubble .badge, 
+.help-box .badge {
+  background: #EEF6FF !important; 
+  color: #0A4DCC !important;
+}
+
+/* Force brand colors on any remaining orange elements */
+[style*="#FA5D19"], [style*="#ff8450"], [style*="#FFF9F6"] {
+  background-color: #0B5FFF !important;
+  border-color: #0B5FFF !important;
+  color: #0B5FFF !important;
+}
