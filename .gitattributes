@@ -1,0 +1,7 @@
+# Prefer our local version during merges/rebases
+styles/brand-overrides.css merge=ours
+colors.json merge=ours
+app/providers/AuthProvider.tsx merge=ours
+lib/auth/* merge=ours
+app/layout.tsx merge=ours
+app/page.tsx merge=ours
